@@ -1,11 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getEntityManagerToken } from '@nestjs/typeorm';
 import { successObject } from 'src/common/helper/sucess-response.interceptor';
-import {
-  Categories,
-  Category,
-  CategoryIds,
-} from 'src/database/entities/category.entity';
+import { Categories, Category, CategoryIds } from 'src/database/entities/category.entity';
 import { Product, VariationTypes } from 'src/database/entities/product.entity';
 import { errorMessages } from 'src/errors/custom';
 import { EntityManager } from 'typeorm';
@@ -101,9 +97,7 @@ describe('ProductService', () => {
       const result = service.getProduct(1);
 
       expect(fakeEntityManager.findOne).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.product.notFound.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.product.notFound.message);
     });
 
     it('should success', async () => {
@@ -125,9 +119,7 @@ describe('ProductService', () => {
       );
 
       expect(fakeEntityManager.findOne).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.category.notFound.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.category.notFound.message);
     });
 
     it('should success', async () => {
@@ -146,35 +138,27 @@ describe('ProductService', () => {
 
   describe('addProductDetails: add product details by updating exising product', () => {
     it('should throw not found product', async () => {
-      fakeEntityManager.createQueryBuilder().update = jest
-        .fn()
-        .mockReturnValueOnce({
-          set: jest.fn().mockReturnThis(),
-          where: jest.fn().mockReturnThis(),
-          andWhere: jest.fn().mockReturnThis(),
-          returning: jest.fn().mockReturnThis(),
-          execute: jest.fn().mockResolvedValueOnce({ affected: 0, raw: [] }),
-        });
+      fakeEntityManager.createQueryBuilder().update = jest.fn().mockReturnValueOnce({
+        set: jest.fn().mockReturnThis(),
+        where: jest.fn().mockReturnThis(),
+        andWhere: jest.fn().mockReturnThis(),
+        returning: jest.fn().mockReturnThis(),
+        execute: jest.fn().mockResolvedValueOnce({ affected: 0, raw: [] }),
+      });
       const result = service.addProductDetails(1, productDetails, 1);
 
       expect(fakeEntityManager.createQueryBuilder().update).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.product.notFound.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.product.notFound.message);
     });
 
     it('should success', async () => {
-      fakeEntityManager.createQueryBuilder().update = jest
-        .fn()
-        .mockReturnValueOnce({
-          set: jest.fn().mockReturnThis(),
-          where: jest.fn().mockReturnThis(),
-          andWhere: jest.fn().mockReturnThis(),
-          returning: jest.fn().mockReturnThis(),
-          execute: jest
-            .fn()
-            .mockResolvedValueOnce({ affected: 1, raw: [testProduct] }),
-        });
+      fakeEntityManager.createQueryBuilder().update = jest.fn().mockReturnValueOnce({
+        set: jest.fn().mockReturnThis(),
+        where: jest.fn().mockReturnThis(),
+        andWhere: jest.fn().mockReturnThis(),
+        returning: jest.fn().mockReturnThis(),
+        execute: jest.fn().mockResolvedValueOnce({ affected: 1, raw: [testProduct] }),
+      });
       const result = await service.addProductDetails(1, productDetails, 1);
 
       expect(fakeEntityManager.createQueryBuilder().update).toBeCalled();
@@ -188,9 +172,7 @@ describe('ProductService', () => {
       const result = service.activateProduct(1, 1);
 
       expect(fakeEntityManager.findOne).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.product.notFound.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.product.notFound.message);
     });
 
     it('should throw error if product not fulfilled', async () => {
@@ -198,9 +180,7 @@ describe('ProductService', () => {
       const result = service.activateProduct(1, 1);
 
       expect(fakeEntityManager.findOne).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.product.notFulfilled.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.product.notFulfilled.message);
     });
 
     it('should success', async () => {
@@ -208,22 +188,18 @@ describe('ProductService', () => {
         id: 1,
         isActive: true,
       };
-      fakeEntityManager.findOne = jest
-        .fn()
-        .mockReturnValueOnce(fulfilledProduct);
+      fakeEntityManager.findOne = jest.fn().mockReturnValueOnce(fulfilledProduct);
 
-      fakeEntityManager.createQueryBuilder().update = jest
-        .fn()
-        .mockReturnValueOnce({
-          set: jest.fn().mockReturnThis(),
-          where: jest.fn().mockReturnThis(),
-          andWhere: jest.fn().mockReturnThis(),
-          returning: jest.fn().mockReturnThis(),
-          execute: jest.fn().mockResolvedValueOnce({
-            affected: 1,
-            raw: [returnedActiveProduct],
-          }),
-        });
+      fakeEntityManager.createQueryBuilder().update = jest.fn().mockReturnValueOnce({
+        set: jest.fn().mockReturnThis(),
+        where: jest.fn().mockReturnThis(),
+        andWhere: jest.fn().mockReturnThis(),
+        returning: jest.fn().mockReturnThis(),
+        execute: jest.fn().mockResolvedValueOnce({
+          affected: 1,
+          raw: [returnedActiveProduct],
+        }),
+      });
       const result = await service.activateProduct(1, 1);
 
       expect(fakeEntityManager.findOne).toBeCalled();
@@ -235,31 +211,25 @@ describe('ProductService', () => {
 
   describe('deleteProduct: delete product by id', () => {
     it('should throw not found product', async () => {
-      fakeEntityManager.createQueryBuilder().delete = jest
-        .fn()
-        .mockReturnValueOnce({
-          from: jest.fn().mockReturnThis(),
-          where: jest.fn().mockReturnThis(),
-          andWhere: jest.fn().mockReturnThis(),
-          execute: jest.fn().mockResolvedValueOnce({ affected: 0, raw: [] }),
-        });
+      fakeEntityManager.createQueryBuilder().delete = jest.fn().mockReturnValueOnce({
+        from: jest.fn().mockReturnThis(),
+        where: jest.fn().mockReturnThis(),
+        andWhere: jest.fn().mockReturnThis(),
+        execute: jest.fn().mockResolvedValueOnce({ affected: 0, raw: [] }),
+      });
       const result = service.deleteProduct(1, 1);
 
       expect(fakeEntityManager.createQueryBuilder().delete).toBeCalled();
-      expect(result).rejects.toThrowError(
-        errorMessages.product.notFound.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.product.notFound.message);
     });
 
     it('should success', async () => {
-      fakeEntityManager.createQueryBuilder().delete = jest
-        .fn()
-        .mockReturnValueOnce({
-          from: jest.fn().mockReturnThis(),
-          where: jest.fn().mockReturnThis(),
-          andWhere: jest.fn().mockReturnThis(),
-          execute: jest.fn().mockResolvedValueOnce({ affected: 1, raw: [] }),
-        });
+      fakeEntityManager.createQueryBuilder().delete = jest.fn().mockReturnValueOnce({
+        from: jest.fn().mockReturnThis(),
+        where: jest.fn().mockReturnThis(),
+        andWhere: jest.fn().mockReturnThis(),
+        execute: jest.fn().mockResolvedValueOnce({ affected: 1, raw: [] }),
+      });
       const result = await service.deleteProduct(1, 1);
 
       expect(fakeEntityManager.createQueryBuilder().delete).toBeCalled();

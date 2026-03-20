@@ -11,17 +11,20 @@ import { User } from 'src/database/entities/user.entity';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  @Get('products')
+  async getAllProducts() {
+    return this.productService.getAllProducts();
+  }
+
   @Get(':id')
   async getProduct(@Param() product: FindOneParams) {
-    return this.productService.getProduct(product.id);
+    const id = Number(product.id);
+    return this.productService.getProduct(id);
   }
 
   @Auth(RoleIds.Admin, RoleIds.Merchant)
   @Post('create')
-  async createProduct(
-    @Body() body: CreateProductDto,
-    @CurrentUser() user: User,
-  ) {
+  async createProduct(@Body() body: CreateProductDto, @CurrentUser() user: User) {
     return this.productService.createProduct(body, user.id);
   }
 
@@ -32,24 +35,21 @@ export class ProductController {
     @Body() body: ProductDetailsDto,
     @CurrentUser() user: User,
   ) {
-    return this.productService.addProductDetails(product.id, body, user.id);
+    const id = Number(product.id);
+    return this.productService.addProductDetails(id, body, user.id);
   }
 
   @Auth(RoleIds.Admin, RoleIds.Merchant)
   @Post(':id/activate')
-  async activateProduct(
-    @Param() product: FindOneParams,
-    @CurrentUser() user: User,
-  ) {
-    return this.productService.activateProduct(product.id, user.id);
+  async activateProduct(@Param() product: FindOneParams, @CurrentUser() user: User) {
+    const id = Number(product.id);
+    return this.productService.activateProduct(id, user.id);
   }
 
   @Auth(RoleIds.Admin, RoleIds.Merchant)
   @Delete(':id')
-  async deleteProduct(
-    @Param() product: FindOneParams,
-    @CurrentUser() user: User,
-  ) {
-    return this.productService.deleteProduct(product.id, user.id);
+  async deleteProduct(@Param() product: FindOneParams, @CurrentUser() user: User) {
+    const id = Number(product.id);
+    return this.productService.deleteProduct(id, user.id);
   }
 }

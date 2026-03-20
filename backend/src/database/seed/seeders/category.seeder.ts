@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Categories,
-  Category,
-  CategoryIds,
-} from 'src/database/entities/category.entity';
+import { Categories, Category, CategoryIds } from 'src/database/entities/category.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 

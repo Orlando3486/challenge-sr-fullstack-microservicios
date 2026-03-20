@@ -1,15 +1,6 @@
 import { Type } from 'class-transformer';
-import {
-  ArrayMinSize,
-  IsDefined,
-  IsNumber,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
-import {
-  ProductDetails,
-  ProductDetailsTypeFn,
-} from 'src/api/product/dto/productDetails';
+import { ArrayMinSize, IsDefined, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { ProductDetails, ProductDetailsTypeFn } from 'src/api/product/dto/productDetails';
 import {
   Entity,
   Column,

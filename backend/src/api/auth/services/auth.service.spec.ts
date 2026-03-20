@@ -95,9 +95,7 @@ describe('AuthService', () => {
         email: 'email',
         password: 'password',
       });
-      expect(result).rejects.toThrowError(
-        errorMessages.auth.userAlreadyExist.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.auth.userAlreadyExist.message);
     });
   });
 
@@ -119,9 +117,7 @@ describe('AuthService', () => {
         email: 'email',
         password: 'password',
       });
-      expect(result).rejects.toThrowError(
-        errorMessages.auth.wronCredentials.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.auth.wronCredentials.message);
     });
 
     it('should throw error if wrong password', async () => {
@@ -132,9 +128,7 @@ describe('AuthService', () => {
         email: 'email',
         password: 'password',
       });
-      expect(result).rejects.toThrowError(
-        errorMessages.auth.wronCredentials.message,
-      );
+      expect(result).rejects.toThrowError(errorMessages.auth.wronCredentials.message);
     });
   });
 

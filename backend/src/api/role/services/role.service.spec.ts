@@ -33,9 +33,7 @@ describe('RoleService', () => {
       ],
     } as User;
     fakeRoleRepo = {
-      findOne: jest
-        .fn()
-        .mockImplementation(() => Promise.resolve(customerRole)),
+      findOne: jest.fn().mockImplementation(() => Promise.resolve(customerRole)),
     };
     fakeUserService = {
       findById: jest.fn().mockImplementation(() => Promise.resolve(user)),
@@ -71,9 +69,7 @@ describe('RoleService', () => {
     });
 
     it('should throw error if not found', async () => {
-      fakeRoleRepo.findOne = jest
-        .fn()
-        .mockImplementation(() => Promise.resolve(null));
+      fakeRoleRepo.findOne = jest.fn().mockImplementation(() => Promise.resolve(null));
       const result = service.findById(1);
 
       expect(fakeRoleRepo.findOne).toBeCalled();
