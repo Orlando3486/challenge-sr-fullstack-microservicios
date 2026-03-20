@@ -1,7 +1,7 @@
-const API = "http://localhost:3000/auth";
+const API = "https://nestjs-ecommerce-api-deh5.onrender.com";
 
 export async function login(email, password) {
-  const res = await fetch(`http://localhost:3000/auth/login`, {
+  const res = await fetch(`${API}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -13,7 +13,7 @@ export async function login(email, password) {
 }
 
 export async function register(email, password) {
-  const res = await fetch(`${API}/register`, {
+  const res = await fetch(`${API}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
