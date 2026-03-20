@@ -1,9 +1,9 @@
 import { getToken } from "./authApi";
 
-const API = "http://localhost:3000/order";
+const API = "https://nestjs-ecommerce-api-deh5.onrender.com";
 
 export async function createOrder(products) {
-  const res = await fetch(`${API}/create`, {
+  const res = await fetch(`${API}/order/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,11 +20,14 @@ export async function createOrder(products) {
 }
 
 export async function getInventory(variationId, countryCode) {
-  const res = await fetch(`${API}/inventory/${variationId}/${countryCode}`, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
-  });
+  const res = await fetch(
+    `${API}/order/inventory/${variationId}/${countryCode}`,
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
+  );
 
   const response = await res.json();
   if (!res.ok)
@@ -34,14 +37,11 @@ export async function getInventory(variationId, countryCode) {
 }
 
 export async function getInventoryByProduct(productId) {
-  const res = await fetch(
-    `http://localhost:3000/order/inventory/product/${productId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    }
-  );
+  const res = await fetch(`${API}/order/inventory/product/${productId}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
   if (!res.ok) throw new Error("Error al obtener inventario del producto");
   const response = await res.json();
   return response.data;
