@@ -1,9 +1,9 @@
 import { getToken } from "./authApi";
 
+const API = "https://nestjs-ecommerce-api-deh5.onrender.com";
+
 export async function getProducts() {
-  const res = await fetch(
-    `https://nestjs-ecommerce-api-deh5.onrender.com/product/products`
-  );
+  const res = await fetch(`${API}/product/products`);
   if (!res.ok) throw new Error("Error al obtener productos");
   const response = await res.json();
   return response.data;
@@ -11,16 +11,14 @@ export async function getProducts() {
 
 export async function getProduct(id) {
   if (!id) throw new Error("ID requerido");
-  const res = await fetch(
-    `https://nestjs-ecommerce-api-deh5.onrender.com/${id}`
-  );
+  const res = await fetch(`${API}//product/${id}`);
   if (!res.ok) throw new Error("Producto no encontrado");
   const response = await res.json();
   return response.data;
 }
 
 export async function createProduct(categoryId) {
-  const res = await fetch(`https://nestjs-ecommerce-api-deh5.onrender.com`, {
+  const res = await fetch(`${API}/product/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,17 +34,14 @@ export async function createProduct(categoryId) {
 }
 
 export async function addProductDetails(productId, details) {
-  const res = await fetch(
-    `https://nestjs-ecommerce-api-deh5.onrender.com/product/${productId}/details`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
-      },
-      body: JSON.stringify(details),
-    }
-  );
+  const res = await fetch(`${API}/product/${productId}/details`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(details),
+  });
   if (!res.ok) throw new Error("Error al agregar detalles");
   const response = await res.json();
   return response.data;
