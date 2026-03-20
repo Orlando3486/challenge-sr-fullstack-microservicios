@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Currency,
-  CurrencyCodes,
-  CurrencyNames,
-} from 'src/database/entities/currency.entity';
+import { Currency, CurrencyCodes, CurrencyNames } from 'src/database/entities/currency.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 

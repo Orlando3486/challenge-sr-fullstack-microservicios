@@ -6,14 +6,21 @@ import { AppService } from './app.service';
 import { TypeOrmConfigService } from './database/typeorm/typeorm.service';
 import { ApiModule } from './api/api.module';
 import { configuration } from './config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { InventoryListener } from './listeners/inventory.listener';
+import { InventoryModule } from './api/inventory/inventory.module';
+import { OrderModule } from './api/order/order.module';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot({ wildcard: false, global: true }),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     ApiModule,
+    InventoryModule,
+    OrderModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, InventoryListener],
 })
 export class AppModule {}

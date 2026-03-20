@@ -22,15 +22,7 @@ import { SizeSeeder } from './seeders/size.seeder';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    TypeOrmModule.forFeature([
-      Role,
-      User,
-      Category,
-      Size,
-      Color,
-      Country,
-      Currency,
-    ]),
+    TypeOrmModule.forFeature([Role, User, Category, Size, Color, Country, Currency]),
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
   ],
   controllers: [],

@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Countries,
-  Country,
-  CountryCodes,
-} from 'src/database/entities/country.entity';
+import { Countries, Country, CountryCodes } from 'src/database/entities/country.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 

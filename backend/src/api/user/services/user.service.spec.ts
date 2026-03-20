@@ -47,9 +47,7 @@ describe('UserService', () => {
     });
 
     it('should throw error if not found', async () => {
-      fakeUserRepo.findOne = jest
-        .fn()
-        .mockImplementation(() => Promise.resolve(null));
+      fakeUserRepo.findOne = jest.fn().mockImplementation(() => Promise.resolve(null));
       const result = service.findById(1);
 
       expect(fakeUserRepo.findOne).toBeCalled();
@@ -65,9 +63,7 @@ describe('UserService', () => {
     });
 
     it('will be null', async () => {
-      fakeUserRepo.findOne = jest
-        .fn()
-        .mockImplementation(() => Promise.resolve(null));
+      fakeUserRepo.findOne = jest.fn().mockImplementation(() => Promise.resolve(null));
       const result = await service.findByEmail('notFound@test.com');
 
       expect(fakeUserRepo.findOne).toBeCalled();

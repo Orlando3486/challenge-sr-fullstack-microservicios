@@ -10,14 +10,9 @@ import { errorMessages } from 'src/errors/custom';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User) private readonly repository: Repository<User>,
-  ) {}
+  constructor(@InjectRepository(User) private readonly repository: Repository<User>) {}
 
-  public async createUser(
-    body: CreateUserDto,
-    ...roles: Role[]
-  ): Promise<User> {
+  public async createUser(body: CreateUserDto, ...roles: Role[]): Promise<User> {
     body.password = await hash(body.password, 10);
     const user: User = this.repository.create({
       ...body,
@@ -27,10 +22,7 @@ export class UserService {
     return this.repository.save(user);
   }
 
-  public async findByEmail(
-    email: string,
-    relations?: UserRelation,
-  ): Promise<User> {
+  public async findByEmail(email: string, relations?: UserRelation): Promise<User> {
     const user: User = await this.repository.findOne({
       where: {
         email,

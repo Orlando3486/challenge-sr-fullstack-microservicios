@@ -6,9 +6,10 @@ import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
 import { ProductModule } from './product/product.module';
 import { ErrorsFilter } from 'src/errors/errors.filter';
+import { OrderModule } from './order/order.module';
 
 @Module({
-  imports: [AuthModule, UserModule, RoleModule, ProductModule],
+  imports: [AuthModule, UserModule, RoleModule, ProductModule, OrderModule],
   providers: [
     {
       provide: APP_INTERCEPTOR,

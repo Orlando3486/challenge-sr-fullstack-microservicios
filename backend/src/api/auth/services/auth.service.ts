@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { RoleIds } from 'src/api/role/enum/role.enum';
@@ -24,15 +20,13 @@ export class AuthService {
   async login(user: CreateUserDto) {
     const { email, password } = user;
     const alreadyExistingUser = await this.userService.findByEmail(email);
-    if (!alreadyExistingUser)
-      throw new UnauthorizedException(errorMessages.auth.wronCredentials);
+    if (!alreadyExistingUser) throw new UnauthorizedException(errorMessages.auth.wronCredentials);
 
     const isValidPassword = await this.userService.comparePassword(
       password,
       alreadyExistingUser.password,
     );
-    if (!isValidPassword)
-      throw new UnauthorizedException(errorMessages.auth.wronCredentials);
+    if (!isValidPassword) throw new UnauthorizedException(errorMessages.auth.wronCredentials);
     return this.generateToken({
       id: alreadyExistingUser.id,
       email,
@@ -41,8 +35,7 @@ export class AuthService {
 
   async register(user: CreateUserDto) {
     const alreadyExistingUser = await this.userService.findByEmail(user.email);
-    if (alreadyExistingUser)
-      throw new ConflictException(errorMessages.auth.userAlreadyExist);
+    if (alreadyExistingUser) throw new ConflictException(errorMessages.auth.userAlreadyExist);
 
     const customerRole = await this.roleService.findById(RoleIds.Customer);
 

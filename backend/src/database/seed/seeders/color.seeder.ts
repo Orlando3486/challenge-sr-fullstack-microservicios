@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Color,
-  Colors,
-  ColorsHexCodes,
-} from 'src/database/entities/color.entity';
+import { Color, Colors, ColorsHexCodes } from 'src/database/entities/color.entity';
 import { Repository } from 'typeorm';
 import { SeederInterface } from '../seeder.interface';
 

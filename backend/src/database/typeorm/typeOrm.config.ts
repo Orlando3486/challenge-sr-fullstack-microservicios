@@ -5,9 +5,7 @@ import { DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const envFilePath: string = getEnvPath(
-  resolve(process.cwd(), 'src/common/envs'),
-);
+const envFilePath: string = getEnvPath(resolve(process.cwd(), 'src/common/envs'));
 config({ path: envFilePath });
 
 export const dataSourceOptions: DataSourceOptions = {
