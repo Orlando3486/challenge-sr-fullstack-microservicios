@@ -11,7 +11,7 @@ export async function getProducts() {
 
 export async function getProduct(id) {
   if (!id) throw new Error("ID requerido");
-  const res = await fetch(`${API}//product/${id}`);
+  const res = await fetch(`${API}/product/${id}`);
   if (!res.ok) throw new Error("Producto no encontrado");
   const response = await res.json();
   return response.data;
