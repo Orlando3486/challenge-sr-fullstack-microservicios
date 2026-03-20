@@ -1,67 +1,34 @@
-# Ecommerce App with Nest.js and Postgres
+# Challenge SR Fullstack - Microservicios
 
-## Description
-This project is an ecommerce application built using Nest.js and Postgres. The focus is on writing clean, modular, and testable code, and following a well-organized project structure.
+Este repositorio contiene la solución al challenge técnico de backend y frontend basado en un proyecto inicial público.
 
-## Technology Stack
+⚠️ El repositorio original no pertenece a la empresa y contiene errores de arquitectura, diseño e implementación que deben ser identificados y corregidos como parte del desafío.
 
-- Nest.js
-- PostgreSQL
-- TypeORM
-- Jest
+## Estructura del proyecto
 
-## Getting Started
-
-To get started with this project, follow these steps:
-
-- Clone this repository to your local machine.
-- navigate to the nestjs-ecommerce directory.
-
-```bash 
-cd ./nestjs-ecommerce
 ```
-- start postgres database.
-
-```bash
-docker-compose up -d
+/backend   → API REST en NestJS + PostgreSQL (event-driven)
+/frontend  → Aplicación React + Vite
 ```
 
-- install app dependencies.
+## URLs públicas
 
-```bash
-npm install
-```
+| Servicio | URL                                                          |
+| -------- | ------------------------------------------------------------ |
+| Frontend | https://challenge-sr-fullstack-microservici-seven.vercel.app |
+| Backend  | https://nestjs-ecommerce-api-deh5.onrender.com               |
 
-- run database migrations.
+## Documentación completa
 
-```bash
-npm run migration:run
-```
-if you want to generate any future migration
+Ver [backend/README.md] para:
 
-```bash
-npm run migration:generate --name=<migrationName>
-```
+- Problemas detectados en el diseño original
+- Eventos de dominio implementados
+- Decisiones técnicas
+- Cómo levantar el proyecto localmente
 
-- run database seeders.
+## Stack
 
-```bash
-npm run seed:run
-```
-
-- start the applictaion.
-
-```bash
-npm run start:dev
-```
-
-## Testing
-To run the tests, follow these steps:
-1. Install dependencies: `npm install`
-2. Run the tests: `npm run test`
-
-## Contributing
-If you're interested in contributing to this project, please follow these guidelines:
-1. Fork the repository
-2. Make your changes
-3. Submit a pull request
+- **Backend:** NestJS + TypeORM + PostgreSQL + EventEmitter2
+- **Frontend:** React + Vite
+- **Infraestructura:** Docker (local), Render + Vercel (producción)
