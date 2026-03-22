@@ -20,7 +20,7 @@ export default function CreateOrder({ onOrderCreated }) {
           quantity: Number(quantity),
         },
       ]);
-      setMessage(`✅ Orden creada: ${result.orderId}`);
+      setMessage(`Orden creada: ${result.orderId}`);
       onOrderCreated?.();
       setVariationId("");
       setQuantity(1);

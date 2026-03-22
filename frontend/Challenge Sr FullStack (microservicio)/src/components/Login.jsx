@@ -5,14 +5,20 @@ export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       await login(email, password);
-      onLogin(); // ✅ Notificá al padre que el login fue exitoso
+      onLogin();
     } catch (err) {
+      console.error(err);
       setError("Email o contraseña incorrectos");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,7 +40,9 @@ export default function Login({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Entrar</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Cargando..." : "Entrar"}
+        </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
