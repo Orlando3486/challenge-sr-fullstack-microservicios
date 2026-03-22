@@ -6,17 +6,22 @@ export default function Register({ onRegister }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setMessage("");
+    setLoading(true);
+
     try {
       await register(email, password);
       setMessage("Registro exitoso, ya podés iniciar sesión");
       onRegister?.();
     } catch (err) {
       setError(err.message || "Error al registrarse");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,7 +43,9 @@ export default function Register({ onRegister }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Registrarse</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Cargando..." : "Registrarse"}
+        </button>
       </form>
       {message && <p style={{ color: "green" }}>{message}</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
