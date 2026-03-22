@@ -7,6 +7,7 @@ import CreateProduct from "./components/CreateProduct";
 import GetProduct from "./components/GetProduct";
 import CreateOrder from "./components/CreateOrder";
 import InventoryStatus from "./components/InventoryStatus";
+import GetProducts from "./components/GetAllProducts";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(isAuthenticated());
@@ -44,6 +45,8 @@ export default function App() {
         }}>
         Cerrar sesión
       </button>
+
+      {/* <GetProducts /> */}
 
       <ProductList key={refreshKey} />
 

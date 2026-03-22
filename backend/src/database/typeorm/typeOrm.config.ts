@@ -11,7 +11,7 @@ config({ path: envFilePath });
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DATABASE_URL?.includes('render') ? { rejectUnauthorized: false } : false,
   entities: ['dist/**/*.entity.js'],
   migrations: ['dist/database/migration/history/*.js'],
   logger: 'simple-console',
